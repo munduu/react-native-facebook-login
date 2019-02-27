@@ -11,6 +11,8 @@ import {
 
 import itypeof from 'itypeof';
 
+import Icon from 'react-native-vector-icons/FontAwesome';
+
 const FBLoginManager = NativeModules.MFBLoginManager;
 
 const styles = StyleSheet.create({
@@ -26,8 +28,8 @@ const styles = StyleSheet.create({
 });
 
 const statics = {
-  loginText: 'Login with Facebook',
-  logoutText: 'Logout from Facebook'
+  loginText: 'Cadastrar com Facebook',
+  logoutText: 'Sair do Facebook'
 };
 
 class FBLogin extends Component {
@@ -145,19 +147,26 @@ class FBLogin extends Component {
     return (this.props.buttonView)
       ? this.props.buttonView
       : (
-        <View style={[styles.login, this.props.style]}>
-          <Text style={[styles.whiteFont, this.fontStyle]}> {buttonText} </Text>
+        <View style={{flex: 1, flexDirection: 'row', justifyContent:"space-around",  padding:5 }}>
+          <Icon name={'facebook'} style={[ { color: 'white', fontSize: 24 }]} />
+          <Text style={{color:  'white', fontSize: 18, textAlign: "center" }}>{buttonText}</Text>
         </View>
       );
   }
 
   render(){
     return (
-      <TouchableHighlight onPress={this._onFacebookPress} underlayColor={this.props.onClickColor} >
-        <View style={[this.props.containerStyle]}>
+      <TouchableOpacity 
+        style={[{ margin: 15,
+          backgroundColor: whiteColor, borderRadius: 10, marginBottom: 0, padding: 6,
+          borderColor: '#3E9B91',
+          borderWidth: 1, marginBottom: 2, 
+          backgroundColor: "#3b5998", 
+          flexDirection:'row', 
+          height: 50 }]}
+        onPress={this._onFacebookPress} >
           {this._getButtonView()}
-        </View>
-      </TouchableHighlight>
+      </TouchableOpacity>
     )
   }
 }
